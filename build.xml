@@ -1,0 +1,25 @@
+<project default="jar" name="network">
+
+	<path id="classpath">
+		<fileset dir="lib" includes="**/*.jar" />
+	</path>
+
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="build/classes" />
+		<javac target="1.6" srcdir="src" destdir="build/classes" classpathref="classpath" debug="on" />
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar" />
+		<jar destfile="build/jar/ARLearnNetwork.jar" basedir="build/classes"></jar>
+		<jar destfile="../lib/ARLearnNetwork.jar" basedir="build/classes"></jar>
+		<jar destfile="../Android/libs/ARLearnNetwork.jar" basedir="build/classes"></jar>
+        <jar destfile="../AndroidV3/libs/ARLearnNetwork.jar" basedir="build/classes"></jar>
+        <jar destfile="../PIM/libs/ARLearnNetwork.jar" basedir="build/classes"></jar>
+        <jar destfile="../PIM/libs/ARLearnNetwork.jar" basedir="build/classes"></jar>
+	</target>
+</project>
