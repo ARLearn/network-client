@@ -20,6 +20,7 @@ package org.celstec.arlearn2.network;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -32,6 +33,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -107,6 +109,7 @@ public class DesktopConnection implements HttpConnection {
 	
 	public HttpResponse executeGET(String url, String token, String accept) {
 		HttpClient httpClient = new DefaultHttpClient();
+//        httpClient.
 		try {
 			HttpGet request = new HttpGet(url);
 			if (token != null) request.setHeader("Authorization", "GoogleLogin auth=" + token);
@@ -124,7 +127,26 @@ public class DesktopConnection implements HttpConnection {
 		return null;
 	}
 
-	
+    public HttpResponse executeGET(String url, String token, String accept, CookieStore cs) {
+        HttpClient httpClient = new DefaultHttpClient();
+        ((DefaultHttpClient) httpClient).setCookieStore(cs);
+        try {
+            HttpGet request = new HttpGet(url);
+            if (token != null) request.setHeader("Authorization", "GoogleLogin auth=" + token);
+            if (accept != null)
+                request.setHeader("Accept", accept);
+            return httpClient.execute(request);
+        } catch (ParseException e) {
+            System.err.print("exception in executeGET");
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 	public HttpResponse executePOST(String url, String token, String accept,
 			String postData, String contentType) {
 		HttpClient httpClient = new DefaultHttpClient();

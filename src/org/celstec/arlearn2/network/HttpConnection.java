@@ -20,6 +20,7 @@ package org.celstec.arlearn2.network;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 
 public interface HttpConnection {
 
@@ -31,4 +32,6 @@ public interface HttpConnection {
 
 	public HttpResponse executeDELETE(String url, String token, String accept);
 
-}
+    public HttpResponse executeGET(String url, String token, String accept, CookieStore cs);
+
+    }
