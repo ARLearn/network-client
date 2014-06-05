@@ -88,5 +88,9 @@ public class GameClient extends GenericClient{
 	public GamesList search( String token, String query) {
 		return (GamesList) executePost(getUrlPrefix()+"/search", token, query, GamesList.class);
 	}
+    public GamesList search( String token, Double lat, Double lng, Long distance) {
+        return (GamesList) executeGet(getUrlPrefix()+"/search/lat/"+lat+"/lng/"+lng+"/distance/"+distance, token, GamesList.class);
+    }
+
 
 }
