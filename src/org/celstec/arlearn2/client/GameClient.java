@@ -23,6 +23,7 @@ import org.apache.http.util.EntityUtils;
 import org.celstec.arlearn2.beans.game.Game;
 import org.celstec.arlearn2.beans.game.GameAccessList;
 import org.celstec.arlearn2.beans.game.GamesList;
+import org.celstec.arlearn2.beans.game.Rating;
 import org.celstec.arlearn2.beans.generalItem.GeneralItem;
 import org.celstec.arlearn2.beans.generalItem.GeneralItemList;
 import org.celstec.arlearn2.network.ConnectionFactory;
@@ -92,5 +93,7 @@ public class GameClient extends GenericClient{
         return (GamesList) executeGet(getUrlPrefix()+"/search/lat/"+lat+"/lng/"+lng+"/distance/"+distance, token, GamesList.class);
     }
 
-
+    public Rating rateGame(String token, long gameId, int rating) {
+        return (Rating)  executeGet(getUrlPrefix()+"/rate/gameId/"+gameId+"/rating/"+rating, token, Rating.class);
+    }
 }
