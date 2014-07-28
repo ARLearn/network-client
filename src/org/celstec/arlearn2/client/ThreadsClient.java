@@ -1,5 +1,6 @@
 package org.celstec.arlearn2.client;
 
+import org.celstec.arlearn2.beans.run.Message;
 import org.celstec.arlearn2.beans.run.MessageList;
 import org.celstec.arlearn2.beans.run.ThreadList;
 
@@ -45,5 +46,13 @@ public class ThreadsClient extends GenericClient{
 
     public MessageList getMessages(String token, Long threadId) {
         return (MessageList) executeGet(getUrlPrefix()+"/threadId/"+threadId, token, MessageList.class);
+    }
+
+    public MessageList getDefaultThreadMessages(String token, Long runId) {
+        return (MessageList) executeGet(getUrlPrefix()+"/runId/"+runId+"/default", token, MessageList.class);
+    }
+
+    public Message createMessage(String token, Message message) {
+        return (Message) executePost(getUrlPrefix() + "/message", token, message, Message.class);
     }
 }
