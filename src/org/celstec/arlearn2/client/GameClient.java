@@ -20,10 +20,7 @@ package org.celstec.arlearn2.client;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
-import org.celstec.arlearn2.beans.game.Game;
-import org.celstec.arlearn2.beans.game.GameAccessList;
-import org.celstec.arlearn2.beans.game.GamesList;
-import org.celstec.arlearn2.beans.game.Rating;
+import org.celstec.arlearn2.beans.game.*;
 import org.celstec.arlearn2.beans.generalItem.GeneralItem;
 import org.celstec.arlearn2.beans.generalItem.GeneralItemList;
 import org.celstec.arlearn2.network.ConnectionFactory;
@@ -95,5 +92,9 @@ public class GameClient extends GenericClient{
 
     public Rating rateGame(String token, long gameId, int rating) {
         return (Rating)  executeGet(getUrlPrefix()+"/rate/gameId/"+gameId+"/rating/"+rating, token, Rating.class);
+    }
+
+    public GameFileList getGameFileList(String token, long gameId) {
+        return (GameFileList) executeGet(getUrlPrefix()+"/gameContent/gameId/"+gameId, token, GameFileList.class);
     }
 }
