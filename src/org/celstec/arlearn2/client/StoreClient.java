@@ -1,5 +1,6 @@
 package org.celstec.arlearn2.client;
 
+import org.celstec.arlearn2.beans.game.GamesList;
 import org.celstec.arlearn2.beans.run.User;
 import org.celstec.arlearn2.beans.store.CategoryList;
 import org.celstec.arlearn2.beans.store.GameCategoryList;
@@ -48,5 +49,9 @@ public class StoreClient extends GenericClient{
 
     public GameCategoryList getGameIdsForCategory(String token, Long categoryId) {
         return (GameCategoryList) executeGet(getUrlPrefix()+"/games/category/"+categoryId, token, GameCategoryList.class);
+    }
+
+    public GamesList getFeaturedGames(String lang) {
+        return (GamesList) executeGet(getUrlPrefix()+"/games/featured/lang/"+lang, null, GamesList.class);
     }
 }
