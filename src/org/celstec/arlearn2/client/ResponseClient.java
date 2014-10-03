@@ -49,7 +49,6 @@ public class ResponseClient extends GenericClient{
 		String entry;
 		try {
 			entry = EntityUtils.toString(httpResp.getEntity(), "utf-8");
-			System.out.println(entry);
 			return (Response) jsonDeserialise(entry, Response.class);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,4 +57,19 @@ public class ResponseClient extends GenericClient{
 			return respError;
 		}
 	}
+
+
+    public Response deleteResponse(String token, Long responseId) {
+        HttpResponse httpResp = ConnectionFactory.getConnection().executeDELETE(getUrlPrefix()+"/responseId/"+responseId, token, "application/json");
+        String entry;
+        try {
+            entry = EntityUtils.toString(httpResp.getEntity(), "utf-8");
+            return (Response) jsonDeserialise(entry, Response.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Response respError = new Response();
+            respError.setError("exception "+e.getMessage());
+            return respError;
+        }
+    }
 }
