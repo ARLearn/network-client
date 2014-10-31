@@ -54,4 +54,8 @@ public class StoreClient extends GenericClient{
     public GamesList getFeaturedGames(String lang) {
         return (GamesList) executeGet(getUrlPrefix()+"/games/featured/lang/"+lang, null, GamesList.class);
     }
+
+    public GamesList getTopGames(String lang) {
+        return (GamesList) executeGet(getUrlPrefix()+"/games/topGames/lang/"+lang, null, GamesList.class);
+    }
 }

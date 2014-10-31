@@ -44,6 +44,13 @@ public class ResponseClient extends GenericClient{
         return (ResponseList) executeGet(getUrlPrefix()+"/runId/"+runId+"?from="+from, token, ResponseList.class);
     }
 
+    public ResponseList getResponses(String token, Long runId, Long from, String resumptionToken) {
+        if (resumptionToken != null) {
+            return (ResponseList) executeGet(getUrlPrefix() + "/runId/" + runId + "?from=" + from + "&resumptionToken=" + resumptionToken, token, ResponseList.class);
+        }
+        return (ResponseList) executeGet(getUrlPrefix() + "/runId/" + runId + "?from=" + from, token, ResponseList.class);
+    }
+
 	public Response publishAction(String token, Response response) {
 		HttpResponse httpResp = ConnectionFactory.getConnection().executePOST(getUrlPrefix(), token, "application/json", toJson(response), "application/json");
 		String entry;
