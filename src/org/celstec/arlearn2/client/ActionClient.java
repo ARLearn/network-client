@@ -68,4 +68,12 @@ public class ActionClient extends GenericClient{
             return (ActionList)  executeGet(getUrlPrefix()+"/runId/"+runId+"?from="+from+"&resumptionToken="+resumptionToken, token, ActionList.class);
         }
     }
+
+	public ActionList getRunActions(String token, String user,  Long runId, Long from, String resumptionToken) {
+		if (resumptionToken == null) {
+			return (ActionList)  executeGet(getUrlPrefix()+"/runId/"+runId+"/user/"+user+"?from="+from, token, ActionList.class);
+		} else {
+			return (ActionList)  executeGet(getUrlPrefix()+"/runId/"+runId+"/user/"+user+"?from="+from+"&resumptionToken="+resumptionToken, token, ActionList.class);
+		}
+	}
 }

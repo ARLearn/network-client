@@ -44,6 +44,7 @@ import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 
 public class DesktopConnection implements HttpConnection {
 
@@ -157,7 +158,7 @@ public class DesktopConnection implements HttpConnection {
 				request.setHeader("Accept", accept);
 			if (contentType != null)
 				request.setHeader("Content-Type", contentType);
-			StringEntity entity = new StringEntity(postData);
+			StringEntity entity = new StringEntity(postData, HTTP.UTF_8);
 			request.setEntity(entity);
 			return httpClient.execute(request);
 		} catch (ParseException e) {

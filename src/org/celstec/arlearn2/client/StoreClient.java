@@ -58,4 +58,8 @@ public class StoreClient extends GenericClient{
     public GamesList getTopGames(String lang) {
         return (GamesList) executeGet(getUrlPrefix()+"/games/topGames/lang/"+lang, null, GamesList.class);
     }
+
+    public CategoryList getCategoriesByLangGame(String lang, long gameId) {
+        return (CategoryList) executeGet(getUrlPrefix()+"/categories/lang/"+lang+"/gameId/"+gameId, null, CategoryList.class);
+    }
 }

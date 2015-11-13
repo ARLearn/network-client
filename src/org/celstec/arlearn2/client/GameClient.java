@@ -60,7 +60,11 @@ public class GameClient extends GenericClient{
     public GameAccessList getGameAccessList(String token, Long gameId) {
         return (GameAccessList) executeGet(getUrlPrefix()+"/access/gameId/"+gameId, token, GameAccessList.class);
     }
-	
+
+	public GameAccessList getGameAccessList(String token) {
+		return (GameAccessList) executeGet(getUrlPrefix()+"/gameAccess", token, GameAccessList.class);
+	}
+
 	public Game getGame(String token, Long gameId) {
 		return (Game)  executeGet(getUrlPrefix()+"/gameId/"+gameId, token, Game.class);
 	}

@@ -25,4 +25,8 @@ public class AccountClient extends GenericClient{
 	public Account accountDetails(String token) {
 		return (Account)  executeGet(getUrlPrefix()+"/accountDetails", token, Account.class);
 	}
+
+	public Account createAnonymousAccount(String name, String email){
+		return (Account) executeGet(getUrlPrefix()+"/createAnonymousContact/"+email+"/"+name, null, Account.class);
+	}
 }

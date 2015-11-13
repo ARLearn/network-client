@@ -27,6 +27,7 @@ import org.celstec.arlearn2.beans.game.Config;
 import org.celstec.arlearn2.beans.game.Game;
 import org.celstec.arlearn2.beans.generalItem.GeneralItemList;
 import org.celstec.arlearn2.beans.run.Run;
+import org.celstec.arlearn2.beans.run.RunAccessList;
 import org.celstec.arlearn2.beans.run.RunList;
 import org.celstec.arlearn2.network.ConnectionFactory;
 
@@ -132,6 +133,11 @@ public class RunClient extends GenericClient{
 			return r;
 		}
 	}
+
+    public RunAccessList getRunAccess(String token){
+        return (RunAccessList)  executeGet(getUrlPrefix()+"/runAccess", token, RunAccessList.class);
+
+    }
 
 
 }
