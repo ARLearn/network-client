@@ -74,6 +74,10 @@ public class RunClient extends GenericClient{
 	public RunList getRunsParticipate (String token) {
 		return (RunList)  executeGet(getUrlPrefix()+"/participate", token, RunList.class);
 	}
+
+	public RunList getRunsForGameParticipate (String token, Long gameId) {
+		return (RunList)  executeGet(getUrlPrefix()+"/participate/gameId/"+gameId, token, RunList.class);
+	}
 	
 	public RunList getRunsParticipate (String token, Long from) {
 		return (RunList)  executeGet(getUrlPrefix()+"/participate?from="+from, token, RunList.class);
@@ -99,7 +103,7 @@ public class RunClient extends GenericClient{
 		} catch (Exception e) {
 			e.printStackTrace();
 			Config c = new Config();
-			c.setError("exception "+e.getMessage());
+			c.setError("exception " + e.getMessage());
 			return c;
 		}
 	}
@@ -138,6 +142,8 @@ public class RunClient extends GenericClient{
         return (RunAccessList)  executeGet(getUrlPrefix()+"/runAccess", token, RunAccessList.class);
 
     }
-
+	public String sendMail(String token, Long runId) {
+		return (String)executeGet(getUrlPrefix()+"/responses/sendMail/runId/"+runId, token, String.class);
+	}
 
 }

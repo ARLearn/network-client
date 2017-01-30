@@ -44,6 +44,10 @@ public class ResponseClient extends GenericClient{
         return (ResponseList) executeGet(getUrlPrefix()+"/runId/"+runId+"?from="+from, token, ResponseList.class);
     }
 
+	public ResponseList getResponses(String token, Long runId, String account ) {
+		return (ResponseList) executeGet(getUrlPrefix()+"/runId/"+runId+"/account/"+account, token, ResponseList.class);
+	}
+
     public ResponseList getResponses(String token, Long runId, Long from, String resumptionToken) {
         if (resumptionToken != null) {
             return (ResponseList) executeGet(getUrlPrefix() + "/runId/" + runId + "?from=" + from + "&resumptionToken=" + resumptionToken, token, ResponseList.class);
@@ -67,7 +71,7 @@ public class ResponseClient extends GenericClient{
 
 
     public Response deleteResponse(String token, Long responseId) {
-        HttpResponse httpResp = ConnectionFactory.getConnection().executeDELETE(getUrlPrefix()+"/responseId/"+responseId, token, "application/json");
+        HttpResponse httpResp = ConnectionFactory.getConnection().executeDELETE(getUrlPrefix() + "/responseId/" + responseId, token, "application/json");
         String entry;
         try {
             entry = EntityUtils.toString(httpResp.getEntity(), "utf-8");
@@ -79,4 +83,6 @@ public class ResponseClient extends GenericClient{
             return respError;
         }
     }
+
+
 }
